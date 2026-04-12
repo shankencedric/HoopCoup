@@ -6,7 +6,6 @@ public class PlayerLookHandler : MonoBehaviour
     [SerializeField] private PlayerLookConfig lookConfig;
     private Vector2 lookInput;
 
-    [SerializeField] private Transform cameraPivot;
     private float currentPitch = 0f;
     private float currentYaw = 0f;
 
@@ -26,6 +25,5 @@ public class PlayerLookHandler : MonoBehaviour
             currentPitch + pitchDelta, 
             lookConfig.maxDownwardAngle, 
             lookConfig.maxUpwardAngle);
-        cameraPivot.localRotation = Quaternion.AngleAxis(currentPitch, Vector3.left);
     }    
 }
