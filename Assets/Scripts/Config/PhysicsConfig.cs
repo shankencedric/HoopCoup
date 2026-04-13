@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WorldPhysicsConfig", menuName = "ScriptableObjects/Configs/WorldPhysicsConfig", order = 3)]
-public class WorldPhysicsConfig : ScriptableObject
+[CreateAssetMenu(fileName = "PhysicsConfig", menuName = "ScriptableObjects/Configs/PhysicsConfig", order = 3)]
+public class PhysicsConfig : ScriptableObject
 {
     [Header("Gravity")]
     public float gravityUpwards = -16.7f;

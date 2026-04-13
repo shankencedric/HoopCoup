@@ -12,9 +12,9 @@ public class BallMotor : RigidbodyMotor
     }
 
     public void FollowPosition(Vector3 targetFollowPosition, float speed)
-    {   
-        transform.position = Vector3.Lerp(
-            transform.position,
+    {
+        transform.localPosition = Vector3.MoveTowards(
+            transform.localPosition,
             targetFollowPosition,
             speed * Time.fixedDeltaTime
         );

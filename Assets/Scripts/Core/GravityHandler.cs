@@ -6,9 +6,9 @@ using UnityEngine;
 public class GravityHandler : MonoBehaviour
 {
     /// <remarks> Accessed by this script and <see cref="IGravityAffected"/> children/implementors (e.g., <seealso cref="PlayerVerticalityHandler"/>). </remarks>
-    public WorldPhysicsConfig worldPhysicsConfig;
+    public PhysicsConfig worldPhysicsConfig;
     private IGravityAffected target;
-    private IMotor motor; 
+    private IMotor motor;
 
     private void Awake()
     {
@@ -23,7 +23,7 @@ public class GravityHandler : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if (target.IsGrounded)
+        if (target.IsGrounded || target.BypassGravityApplication)
         {
             motor.SetTargetVelocityY(worldPhysicsConfig.groundedBaseVerticalVelocity);
             return;

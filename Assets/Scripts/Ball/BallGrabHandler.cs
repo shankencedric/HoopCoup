@@ -8,11 +8,13 @@ public struct BallGrabState
 
 [RequireComponent(typeof(BallMotor))]
 [RequireComponent(typeof(BallShootingHandler))]
+[RequireComponent(typeof(BallVerticalityHandler))]
 public class BallGrabHandler : MonoBehaviour
 {
     [SerializeField] private Transform holdTransform;
     [SerializeField] private PlayerLookHandler playerLooker;
 
+    private BallVerticalityHandler verticalityHandler;
     private BallShootingHandler ballShooter;
     private BallConfig config;
 
@@ -23,6 +25,7 @@ public class BallGrabHandler : MonoBehaviour
 
     private void Awake()
     {
+        verticalityHandler = GetComponent<BallVerticalityHandler>();
         ballShooter = GetComponent<BallShootingHandler>();
         motor = GetComponent<BallMotor>();
         config = motor.moveConfig;
@@ -39,6 +42,8 @@ public class BallGrabHandler : MonoBehaviour
 
     private void Update()
     {
+        verticalityHandler.BypassGroundedness(currGrabState.IsHeld); // Physics bypass 
+
         if (currGrabState.IsNear && !currGrabState.IsHeld && inputState.HasPressedGrabThisFrame)
         {
             Grab();

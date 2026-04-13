@@ -8,8 +8,6 @@ public class BallConfig : ScriptableObject
 
     [Header("Shoot")]
     public float shootForce = 12f;
-    public float minShootAngle = 15f;
-    public float maxShootAngle = 75f;
     public float upwardBias = 0.2f;
 
     [Header("Ground Check / Smoothing")]

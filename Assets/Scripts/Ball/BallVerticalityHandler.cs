@@ -1,4 +1,6 @@
+using UnityEditor.Build;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 /// <summary>
 /// Makes use of consecutive bounces (within a set timer) to determine the smoothing of the rest of the bounces (aka, ground settling).
@@ -15,8 +17,10 @@ public class BallVerticalityHandler : MonoBehaviour, IGravityAffected
     private uint bounceCount = 0;
     private float bounceCountdown = 0f;
 
+
     // IGravityAffected
     public bool IsGrounded { get; private set; }
+    public bool BypassGravityApplication { get; private set; }
     public float TargetVelocityY
     {
         get => TargetVelocityY;
@@ -76,6 +80,9 @@ public class BallVerticalityHandler : MonoBehaviour, IGravityAffected
     private bool IsInGroundLayerMask(GameObject obj) => ((1 << obj.layer) & groundLayerMask.value) != 0;
 
     #endregion
-    
+
+    /// <summary> Use to bypass gravity application (e.g., when ball is held). </summary>
+    public void BypassGroundedness(bool bypass) => BypassGravityApplication = bypass;
+
     #endregion
 }

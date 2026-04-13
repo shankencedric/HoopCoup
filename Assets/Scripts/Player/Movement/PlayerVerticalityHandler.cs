@@ -19,7 +19,7 @@ public class PlayerVerticalityHandler : MonoBehaviour, IGravityAffected
     /// <remarks> Taken from <see cref="PlayerMotor"/>. </remarks>
     private PlayerMoveConfig moveConfig;
     /// <remarks> Taken from <see cref="GravityHandler"/>. </remarks>
-    private WorldPhysicsConfig worldPhysicsConfig;
+    private PhysicsConfig worldPhysicsConfig;
 
     [SerializeField] private LayerMask groundLayerMask;
 
@@ -29,6 +29,7 @@ public class PlayerVerticalityHandler : MonoBehaviour, IGravityAffected
 
     // IGravityAffected
     public bool IsGrounded { get; private set; } 
+    public bool BypassGravityApplication { get; private set; }
     public float TargetVelocityY
     {
         get => motor.GetTargetVelocityY();

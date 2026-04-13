@@ -425,6 +425,7 @@ Transform:
   - {fileID: 7699959745665734874}
   - {fileID: 5354356918987919187}
   - {fileID: 2876924280730248443}
+  - {fileID: 5444900210158237048}
   m_Father: {fileID: 8682045030644532060}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4617107000782306892
@@ -437,9 +438,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5444900210158237048}
   m_Layer: 0
-  m_Name: BallGrabLocation
+  m_Name: BallHoldTransform
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -451,12 +452,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4617107000782306892}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.12, z: 0.65}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.206, z: 1.293}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4273158959959558171}
+  m_Father: {fileID: 2074288178435312501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4619226736475004060
 GameObject:
@@ -530,7 +531,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8682045030644532060}
-  - {fileID: 5444900210158237048}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &73666312735718887

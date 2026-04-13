@@ -12,11 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1ab6704bc0d7548b45fcbf1a3e20a6, type: 3}
   m_Name: BallConfig
   m_EditorClassIdentifier: Assembly-CSharp::BallConfig
-  followSpeed: 25
-  shootForce: 1500
-  minShootAngle: 15
-  maxShootAngle: 75
-  upwardBias: 2.59
+  followSpeed: 40
+  shootForce: 50
+  upwardBias: 1
   bounciness: 0.5
   groundedBounciness: 0.2
   consecutiveBounceCount: 3

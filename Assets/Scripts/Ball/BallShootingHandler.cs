@@ -3,9 +3,8 @@ using UnityEngine;
 public class BallShootingHandler : MonoBehaviour
 {
     [SerializeField] private Transform holdTransform;
-    private BallConfig config;
-
     private BallMotor motor;
+    private BallConfig config;
 
     private void Awake()
     {
@@ -16,8 +15,6 @@ public class BallShootingHandler : MonoBehaviour
     /// <remarks> Incorporates an upward bias based on the <see cref="BallConfig.upwardBias"/> </remarks>
     public void Shoot(Vector3 direction)
     {
-        Vector3 adjustedDirection = (direction + Vector3.up * config.upwardBias).normalized;
-        Vector3 shootVelocity = adjustedDirection * config.shootForce;
-        motor.ApplyVelocity(shootVelocity, ForceMode.Impulse);
+        motor.ApplyVelocity(direction * config.shootForce, ForceMode.Impulse);
     }
 }
