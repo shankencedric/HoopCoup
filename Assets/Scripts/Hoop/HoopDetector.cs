@@ -12,7 +12,8 @@ public class HoopDetector : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            hasEntered = other.attachedRigidbody.linearVelocity.y < 0f; // downwards velocity
+            if (hasExited) ResetBools();
+            else hasEntered = true;
         }
     }
 
@@ -20,7 +21,9 @@ public class HoopDetector : MonoBehaviour
     {
         if (other.CompareTag("Ball"))
         {
-            hasExited = other.attachedRigidbody.linearVelocity.y < 0f; // still downwards velocity
+            
+            if (!hasEntered) ResetBools();
+            else hasExited = other.attachedRigidbody.linearVelocity.y < 0f; // still downwards velocity
         }
     }
 
@@ -29,8 +32,13 @@ public class HoopDetector : MonoBehaviour
         if (hasEntered && hasExited)
         {
             GameManager.Instance.Score();
-            hasEntered = false;
-            hasExited = false;
+            ResetBools();
         }
+    }
+
+    private void ResetBools()
+    {
+        hasEntered = false;
+        hasExited = false;
     }
 }
