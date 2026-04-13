@@ -3,8 +3,6 @@ using UnityEngine;
 /// <summary>
 /// Simple gravity applier script to applicable to objects that have implemented <see cref="IGravityAffected"/> and <see cref="IMotor"/> (separately).
 /// </summary>
-[RequireComponent(typeof(IGravityAffected))]
-[RequireComponent(typeof(IMotor))]
 public class GravityHandler : MonoBehaviour
 {
     /// <remarks> Accessed by this script and <see cref="IGravityAffected"/> children/implementors (e.g., <seealso cref="PlayerVerticalityHandler"/>). </remarks>

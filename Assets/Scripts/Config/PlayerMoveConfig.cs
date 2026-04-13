@@ -12,11 +12,8 @@ public class PlayerMoveConfig : ScriptableObject
 
     #region JUMP
     [Header("Jumping")]
-    public float jumpHeight = 2.7889f; // 1.67x player height
+    public float jumpHeight = 2.7889f; 
     public float baseJumpVelocity = 1.67f;
-
-    //[Tooltip("Grace time for timing jumps when landing (secs)")] // disabled because we are using isPressingJump instead of hasPressedJumpThisFrame)
-    //public float jumpBuffer = 0.167f; 
 
     [Header("Jumping Mods")]
     public float sprintJumpMultiplier = 1.167f; 

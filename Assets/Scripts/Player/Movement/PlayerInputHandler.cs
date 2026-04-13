@@ -8,7 +8,7 @@ public struct PlayerInputState
     public Vector2 LookInput;
     public bool IsPressingSprint;
     public bool IsPressingCrouch;
-    public bool IsPressingJump; // could be refactored to use "HasPressedJumpThisFrame" architecture
+    public bool IsPressingJump;
 }
 
 /// <summary> Event-driver that handles all the player-movement input (e.g., wasd, mouse look, sprint/crouch buttons, etc.) </summary>
@@ -64,7 +64,7 @@ public class PlayerInputHandler : MonoBehaviour
             LookInput = lookAction.ReadValue<Vector2>(),
             IsPressingSprint = sprintAction.IsPressed(),
             IsPressingCrouch = crouchAction.IsPressed(),
-            IsPressingJump = jumpAction.IsPressed()
+            IsPressingJump = jumpAction.IsPressed(),
         };
 
         OnInputChanged?.Invoke(state);

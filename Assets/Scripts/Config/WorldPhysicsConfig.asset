@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WorldPhysicsConfig
   m_EditorClassIdentifier: Assembly-CSharp::WorldPhysicsConfig
   gravityUpwards: -35
-  gravityDownwards: -50
-  terminalVelocity: -350
-  groundedBaseVerticalVelocity: -1
+  gravityDownwards: -55
+  terminalVelocity: -100
+  groundedBaseVerticalVelocity: -0.5

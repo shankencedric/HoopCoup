@@ -380,6 +380,37 @@ Transform:
   - {fileID: 5354356918987919187}
   m_Father: {fileID: 8682045030644532060}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4617107000782306892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5444900210158237048}
+  m_Layer: 0
+  m_Name: BallGrabLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5444900210158237048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4617107000782306892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.925, z: 0.397}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4273158959959558171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4619226736475004060
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +484,7 @@ Transform:
   m_Children:
   - {fileID: 8682045030644532060}
   - {fileID: 7998251301405315843}
+  - {fileID: 5444900210158237048}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &73666312735718887
@@ -462,7 +494,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6001326221895453186}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0bdfcf954a0888b4784298c814c19d5b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -531,7 +563,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLookHandler
   lookConfig: {fileID: 11400000, guid: 70edbe91bd0771241b0e35e00b9e2fb2, type: 2}
-  cameraPivot: {fileID: 0}
 --- !u!114 &8534309600639505151
 MonoBehaviour:
   m_ObjectHideFlags: 0
