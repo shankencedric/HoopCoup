@@ -1,13 +1,19 @@
 using UnityEngine;
 
-/// <remarks>Very similar with <seealso cref="PlayerVerticalityHandler"/>.</remarks>
+/// <summary>
+/// Makes use of consecutive bounces (within a set timer) to determine the smoothing of the rest of the bounces (aka, ground settling).
+/// </summary>
+/// <remarks> See <seealso cref="BallConfig"/>.</remarks>
+[RequireComponent(typeof(SphereCollider))]
 public class BallVerticalityHandler : MonoBehaviour, IGravityAffected
 {
     [SerializeField] private BallConfig ballConfig;
     [SerializeField] private LayerMask groundLayerMask;
 
-    // Ground Check
-    private SphereCollider ballCollider;
+    // Ground Check / Smoothing
+    private PhysicsMaterial physicsMaterial;
+    private uint bounceCount = 0;
+    private float bounceCountdown = 0f;
 
     // IGravityAffected
     public bool IsGrounded { get; private set; }
@@ -19,39 +25,57 @@ public class BallVerticalityHandler : MonoBehaviour, IGravityAffected
 
     private void Awake()
     {
-        ballCollider = GetComponent<SphereCollider>();
+        physicsMaterial = GetComponent<SphereCollider>().material;
+        physicsMaterial.bounciness = ballConfig.bounciness;
     }
 
-    #region GROUND CHECK
-    private void Update() => UpdateIsGrounded();
-
-    private void UpdateIsGrounded()
+    #region GROUND CHECK & SMOOTHING
+    private void OnCollisionEnter(Collision collision)
     {
-        Vector3 rayOrigin = GetRayOrigin();
-        IsGrounded = Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, ballConfig.groundCheckRayLength, groundLayerMask)
-            && IsInGroundLayerMask(hit.transform.gameObject);
+        if (IsInGroundLayerMask(collision.gameObject)) HandleBounceEnter();
     }
 
-    private Vector3 GetRayOrigin()
+    private void OnCollisionExit(Collision collision)
     {
-        Vector3 bottom = transform.position
-            + ballCollider.center
-            + Vector3.down * ballCollider.radius;
-        return bottom + Vector3.up * ballConfig.groundCheckRayOriginOffset.y;
+        if (IsInGroundLayerMask(collision.gameObject)) HandleBounceExit();
     }
+
+    private void HandleBounceEnter()
+    {
+        IsGrounded = true;
+        if (bounceCountdown > 0) bounceCount++;
+        else StartCountdown();
+    }
+
+    private void HandleBounceExit()
+    {
+        IsGrounded = false;
+        if (bounceCountdown <= 0) bounceCount = 0;
+    }
+
+    #region COUNTDOWN
+    private void Update()
+    {
+        Countdown();
+
+        // Smoothing logic
+        if (bounceCount >= ballConfig.consecutiveBounceCount)
+        {
+            physicsMaterial.bounciness = ballConfig.groundedBounciness;
+        }
+        else physicsMaterial.bounciness = ballConfig.bounciness;
+    }
+
+    private void Countdown()
+    {
+        if (bounceCountdown > 0) bounceCountdown -= Time.deltaTime;
+        else bounceCountdown = 0f;
+    }
+    private void StartCountdown() => bounceCountdown = ballConfig.consecutiveBounceTimer;
 
     private bool IsInGroundLayerMask(GameObject obj) => ((1 << obj.layer) & groundLayerMask.value) != 0;
-    #endregion
 
-    #region UNITY EDITOR 
-    #if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        if (ballCollider == null) return;
-        Vector3 origin = GetRayOrigin();
-        Gizmos.color = IsGrounded ? Color.green : Color.red;
-        Gizmos.DrawRay(origin, Vector3.down * ballConfig.groundCheckRayLength);
-    }
-    #endif
+    #endregion
+    
     #endregion
 }

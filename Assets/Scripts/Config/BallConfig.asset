@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d1ab6704bc0d7548b45fcbf1a3e20a6, type: 3}
   m_Name: BallConfig
   m_EditorClassIdentifier: Assembly-CSharp::BallConfig
-  followSpeed: 12
-  shootForce: 19.8
-  upwardBias: 49.7
-  groundCheckRayOriginOffset: {x: 0, y: 0.1, z: 0}
-  groundCheckRayLength: 0.15
+  followSpeed: 25
+  shootForce: 1500
+  minShootAngle: 15
+  maxShootAngle: 75
+  upwardBias: 2.59
+  bounciness: 0.55
+  groundedBounciness: 0.3
+  consecutiveBounceCount: 4
+  consecutiveBounceTimer: 0.25

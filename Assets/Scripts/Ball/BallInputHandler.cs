@@ -6,7 +6,7 @@ public struct BallInputState
 {
     public bool HasPressedGrabThisFrame;
     public bool HasPressedReleaseThisFrame;
-    public bool HasPressedShootThisFrame;
+    public bool IsPressingShoot;
 }
 
 /// <summary> Event-driver that handles all the ball-related input. </summary>
@@ -53,7 +53,7 @@ public class BallInputHandler : MonoBehaviour
         {
             HasPressedGrabThisFrame = grabAction.WasPressedThisFrame(),
             HasPressedReleaseThisFrame = releaseAction.WasPressedThisFrame(),
-            HasPressedShootThisFrame = shootAction.WasPressedThisFrame()
+            IsPressingShoot = shootAction.IsPressed()
         };
 
         OnInputChanged?.Invoke(state);

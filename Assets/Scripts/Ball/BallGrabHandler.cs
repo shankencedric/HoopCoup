@@ -10,7 +10,7 @@ public struct BallGrabState
 public class BallGrabHandler : MonoBehaviour
 {
     [SerializeField] private Transform holdTransform;
-    [SerializeField] private BallConfig config;
+    private BallConfig config;
 
     private BallInputState inputState;
     private BallGrabState currGrabState;
@@ -20,6 +20,7 @@ public class BallGrabHandler : MonoBehaviour
     private void Awake()
     {
         motor = GetComponent<BallMotor>();
+        config = motor.moveConfig;
 
         currGrabState = new BallGrabState
         {
@@ -41,7 +42,7 @@ public class BallGrabHandler : MonoBehaviour
         {
             Release();
         }
-        else if (currGrabState.IsHeld && inputState.HasPressedShootThisFrame)
+        else if (currGrabState.IsHeld && inputState.IsPressingShoot)
         {
             Shoot();
         }
@@ -79,16 +80,14 @@ public class BallGrabHandler : MonoBehaviour
     /// <summary> Shoot the ball. </summary>
     private void Shoot()
     {
-        currGrabState.IsHeld = false;
-        motor.TurnRbKinematic(false);
-        motor.ToggleCollision(true);
+        Release();
 
-        Vector3 shootDirection = transform.forward;
+        Vector3 shootDirection = holdTransform.forward;
         shootDirection = (shootDirection + Vector3.up * config.upwardBias).normalized;
 
         Vector3 shootVelocity = shootDirection * config.shootForce;
 
-        motor.ApplyVelocity(shootVelocity, ForceMode.Force);
+        motor.ApplyVelocity(shootVelocity, ForceMode.Impulse);
     }
 
     public void UpdateBallNearState(bool near) => currGrabState.IsNear = near;

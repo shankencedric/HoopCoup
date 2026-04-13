@@ -33,10 +33,10 @@ public class PlayerMotor : RigidbodyMotor
         float targetSpeed = targetHorizontalVelocity.magnitude;
         float rate = (targetSpeed > 0f ? 
             targetSpeed : moveConfig.baseMoveSpeed) // latter is fallback since targetSpeed could be 0 => rate = 0 => no movement
-            / moveConfig.inputSmoothingTime; 
+            / moveConfig.inputSmoothingTime;
 
         smoothedHorizontal = Vector3.MoveTowards(
-            smoothedHorizontal,
+            rb.linearVelocity,
             targetHorizontalVelocity,
             rate * Time.fixedDeltaTime
         );
