@@ -1,6 +1,4 @@
-using UnityEditor.Build;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 /// <summary>
 /// Makes use of consecutive bounces (within a set timer) to determine the smoothing of the rest of the bounces (aka, ground settling).

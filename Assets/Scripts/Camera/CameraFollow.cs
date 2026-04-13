@@ -9,14 +9,14 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform target;
 
     [Header("Offset")]
-    [SerializeField] private Vector3 offset = new Vector3(0f, 4f, -6f);
+    [SerializeField] private Vector3 offset = new(0f, 4f, -6f);
 
     [Header("Follow")]
     [SerializeField] private float followSpeed = 8f;
     [SerializeField] private float rotationSpeed = 10f;
 
     [Header("Look")]
-    [SerializeField] private Vector3 lookOffset = new Vector3(0f, 1.5f, 0f);
+    [SerializeField] private Vector3 lookOffset = new(0f, 1.5f, 0f);
 
     private void LateUpdate()
     {
