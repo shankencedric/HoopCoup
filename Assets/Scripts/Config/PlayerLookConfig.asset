@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerLookConfig
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLookConfig
   sensitivity: 0.067
-  maxUpwardAngle: 88
-  maxDownwardAngle: -67
+  maxUpwardAngle: 75
+  maxDownwardAngle: -5

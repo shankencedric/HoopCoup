@@ -7,9 +7,13 @@ public struct BallGrabState
 }
 
 [RequireComponent(typeof(BallMotor))]
+[RequireComponent(typeof(BallShootingHandler))]
 public class BallGrabHandler : MonoBehaviour
 {
     [SerializeField] private Transform holdTransform;
+    [SerializeField] private PlayerLookHandler playerLooker;
+
+    private BallShootingHandler ballShooter;
     private BallConfig config;
 
     private BallInputState inputState;
@@ -19,6 +23,7 @@ public class BallGrabHandler : MonoBehaviour
 
     private void Awake()
     {
+        ballShooter = GetComponent<BallShootingHandler>();
         motor = GetComponent<BallMotor>();
         config = motor.moveConfig;
 
@@ -42,7 +47,7 @@ public class BallGrabHandler : MonoBehaviour
         {
             Release();
         }
-        else if (currGrabState.IsHeld && inputState.IsPressingShoot)
+        else if (currGrabState.IsHeld && inputState.HasPressedShootThisFrame)
         {
             Shoot();
         }
@@ -77,17 +82,11 @@ public class BallGrabHandler : MonoBehaviour
         motor.ToggleCollision(true);
     }
 
-    /// <summary> Shoot the ball. </summary>
+    /// <summary> Shoot the ball. The actual application is continued in <see cref="ballShooter"/>. </summary>
     private void Shoot()
     {
         Release();
-
-        Vector3 shootDirection = holdTransform.forward;
-        shootDirection = (shootDirection + Vector3.up * config.upwardBias).normalized;
-
-        Vector3 shootVelocity = shootDirection * config.shootForce;
-
-        motor.ApplyVelocity(shootVelocity, ForceMode.Impulse);
+        ballShooter.Shoot(playerLooker.GetAimForward());
     }
 
     public void UpdateBallNearState(bool near) => currGrabState.IsNear = near;

@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerLookHandler : MonoBehaviour
 {
     [SerializeField] private PlayerLookConfig lookConfig;
+    [SerializeField] private Transform playerFace;
+
     private Vector2 lookInput;
 
     private float currentPitch = 0f;
@@ -25,5 +27,8 @@ public class PlayerLookHandler : MonoBehaviour
             currentPitch + pitchDelta, 
             lookConfig.maxDownwardAngle, 
             lookConfig.maxUpwardAngle);
+        playerFace.localRotation = Quaternion.AngleAxis(currentPitch, Vector3.left);
     }    
+
+    public Vector3 GetAimForward() => playerFace.forward;
 }

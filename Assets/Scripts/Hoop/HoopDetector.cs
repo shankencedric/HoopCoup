@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Simply detects proper entrance and exit of the basketball through the hoop.
+/// </summary>
 public class HoopDetector : MonoBehaviour
 {
     private bool hasEntered = false;
@@ -25,6 +28,7 @@ public class HoopDetector : MonoBehaviour
     {
         if (hasEntered && hasExited)
         {
+            GameManager.Instance.Score();
             hasEntered = false;
             hasExited = false;
         }

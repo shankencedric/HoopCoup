@@ -17,7 +17,7 @@ MonoBehaviour:
   minShootAngle: 15
   maxShootAngle: 75
   upwardBias: 2.59
-  bounciness: 0.55
-  groundedBounciness: 0.3
-  consecutiveBounceCount: 4
-  consecutiveBounceTimer: 0.25
+  bounciness: 0.5
+  groundedBounciness: 0.2
+  consecutiveBounceCount: 3
+  consecutiveBounceTimer: 0.3
