@@ -13,11 +13,12 @@ public class BallMotor : RigidbodyMotor
 
     public void FollowPosition(Vector3 targetFollowPosition, float speed)
     {
-        transform.localPosition = Vector3.MoveTowards(
-            transform.localPosition,
-            targetFollowPosition,
-            speed * Time.fixedDeltaTime
-        );
+        transform.position = targetFollowPosition;
+        //transform.position = Vector3.MoveTowards(
+        //    transform.position,
+        //    targetFollowPosition,
+        //    speed * Time.fixedDeltaTime
+        //);
     }
 
     public void TurnRbKinematic(bool isKinematic) => rb.isKinematic = isKinematic;
