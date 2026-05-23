@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BallConfig
   m_EditorClassIdentifier: Assembly-CSharp::BallConfig
   followSpeed: 40
-  shootForce: 50
-  upwardBias: 1
-  bounciness: 0.5
+  shootForce: 75
+  upwardBias: 2
+  bounciness: 0.6
   groundedBounciness: 0.2
-  consecutiveBounceCount: 3
+  consecutiveBounceCount: 4
   consecutiveBounceTimer: 0.3
